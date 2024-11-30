@@ -8,11 +8,5 @@ const poppins = Poppins({
 });
 
 export default function Home() {
-  return (
-    <div>
-      <h1 className={`${poppins.variable} font-poppins  text-3xl font-bold`}>
-        Welcome to FileSafe!
-      </h1>
-    </div>
-  );
+  return <div></div>;
 }
