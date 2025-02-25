@@ -1,6 +1,6 @@
 "use client";
 
-import { z } from "zod";
+import { set, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Loader2Icon, LoaderCircleIcon, PencilIcon } from "lucide-react";
 import Link from "next/link";
+import { createAccount } from "@/lib/actions/user.action";
 
 type FormType = "sign-in" | "sign-up";
 
@@ -45,7 +46,12 @@ const AuthForm = ({ type }: { type: FormType }) => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    setIsLoading(true);
+
+    const user = createAccount({
+      fullName: values.fullName || "",
+      email: values.email,
+    })
   }
 
   return (
